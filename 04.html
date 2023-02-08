@@ -6,6 +6,11 @@
   <script src="https://unpkg.com/react@18.1.0/umd/react.development.js"></script>
   <script src="https://unpkg.com/react-dom@18.1.0/umd/react-dom.development.js"></script>
   <script src="https://unpkg.com/@babel/standalone@7.12.4/babel.js"></script>
+
+  <!--extra credit 4, adding the prop-types package.-->
+  <script src="https://unpkg.com/prop-types@15.7.2/prop-types.js"></script>
+
+
   <script type="text/babel">
     // 🐨 Make a function called `message` which returns the JSX we want to share
 
@@ -19,6 +24,7 @@ const PropTypes = {
     } 
   }
 }
+//extra credit 4 done, semi tested.
 
 //prop type validation adds memory and processor stress. Reducing app optimization.
 
@@ -76,11 +82,24 @@ Message.propTypes = {
 
 
     //Making a custom component with JSX
+    /*
     const element = 
     <div className= "container">
       <Message subject="World" greeting= "Hello" /> 
       <Message subject="World" greeting="Goodbye" />
       </div>
+    */
+
+    const element = 
+    <>
+       <Message subject="World" greeting= "Hello" />
+       <Message subject="World" greeting= "Goodbye" />
+    </>
+    //working implementation of the React fragment.
+    //fast way to position elements side by side, and faster syntax.
+    //equivalent to <> -> <React.Fragment> -> <div className="container">
+
+    
       //tries the testing propTypes error message with no success.
       //tested the final version with the same error test of changing to boolean type and
       //still got the same 'uncatched' error from the chrome dev tools
