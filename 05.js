@@ -35,6 +35,7 @@ const largeBox = <div
 
 
 //extra credit 1 making a costum Box component
+/*
 function Box({style, className ='', ...otherProps}){
   return (
     <div 
@@ -44,6 +45,46 @@ function Box({style, className ='', ...otherProps}){
     />
   )
 }
+*/
+
+//override of the Box function taking in the size parameter.
+function Box({style, size, className, ...otherProps}){
+  const sizeName = size ? `box--${size}` : '' // is there a size operand? if so set to return (
+    return(
+      <div 
+      className = {`box ${sizeName}`}
+      style = {{fontStyle: 'italic', ...style}}
+      {...otherProps}
+
+      />
+    )
+}
+
+//extra credit 2 implementation with size parameter in API
+ function App(){
+  return <div>
+    <Box size="small" style={{backgroundColor: 'lightblue'}}>
+      small lightblue box
+    </Box>
+
+    <Box size="medium" style={{backgroundColor: 'pink'}}>
+      medium pink box
+    </Box>
+
+    <Box size="large" style={{backgroundColor: 'orange'}}>
+      large orange box
+    </Box>
+
+    <Box>
+      sizeless box
+    </Box>
+
+  </div>
+ }
+ //App() running with the latest implementation of the box component that takes in the 
+ //small, medium and large options and hard codes that operand thus selecting the desired CSS option.
+
+ //remember to use the JSX expression of the tag e.g. <div /> within the box funtion as the returning React element.
 
 /*
 function App() {
@@ -57,7 +98,7 @@ function App() {
 }
 */
 
-function App(){
+/*function App(){
   //the class name must be in "" not '' or else it wont compile well.
   return (
     <div>
@@ -79,6 +120,8 @@ function App(){
     </div>
   )
 }
+*/
+
 //working implementation, forgot the <div> element to group the boxes, was offered to use 
 //a fragment, <></> 
 
