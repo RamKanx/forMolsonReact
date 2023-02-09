@@ -33,6 +33,19 @@ const largeBox = <div
   style = {{backgroundColor:"orange", fontStyle: "italic"}} 
  >large orange box</div>
 
+
+//extra credit 1 making a costum Box component
+function Box({style, className ='', ...otherProps}){
+  return (
+    <div 
+      className = {`box ${className}`}
+      style = {{fontStyle: 'italic', ...style}}
+      {...otherProps}
+    />
+  )
+}
+
+/*
 function App() {
   return (
     <div>
@@ -42,5 +55,33 @@ function App() {
     </div>
   )
 }
+*/
+
+function App(){
+  //the class name must be in "" not '' or else it wont compile well.
+  return (
+    <div>
+      <Box className = "box--small" style={{backgroundColor: 'lightblue'}}>
+        small lightblue box
+      </Box>
+
+      <Box className = "box--medium" style={{backgroundColor: 'pink'}}>
+        medium pink box
+      </Box>
+
+      <Box className = "box--large" style={{backgroundColor:'orange'}}>
+        large orange box
+      </Box>
+
+      <Box>
+        sizeless box
+      </Box>
+    </div>
+  )
+}
+//working implementation, forgot the <div> element to group the boxes, was offered to use 
+//a fragment, <></> 
+
+//re-implementing with the costum made box
 
 export default App
