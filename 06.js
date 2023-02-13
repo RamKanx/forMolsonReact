@@ -4,6 +4,7 @@
 import * as React from 'react'
 
 function UsernameForm({onSubmitUsername}) {
+  const [error, setError]= React.useState(null)
 
   const inputRef = React.useRef()
   
@@ -41,15 +42,28 @@ function UsernameForm({onSubmitUsername}) {
   // 🐨 make sure to associate the label to the input.
   // to do so, set the value of 'htmlFor' prop of the label to the id of input
 
+function handleChange(event){
+  const {value} = event.target
+  const isLowerCase = (value === value.toLowerCase()) //ask ed for the tripple use operator.
+  setError(isLowerCase ? null : 'Username must be lower case')
+}
+
+
   //the onSubmit is used in the form tag, and the curly brackets for the handleSubmit function.
 
   return (
     <form onSubmit={handleSubmit}> 
       <div>
-        <label>Username:</label>
-        <input id="usernameInput" type="text" ref={inputRef} />
+        <label htmlFor="usernameInput">Username:</label>
+        <input id="usernameInput" type="text" ref={inputRef} onChange={handleChange} />
       </div>
-      <button type="submit">Submit</button>
+
+      
+      <div role="alert" style={{color:'red'}}>
+        {error}
+      </div>
+
+      <button disabled = {Boolean(error)} type="submit">Submit</button>
     </form>
   )
 }
