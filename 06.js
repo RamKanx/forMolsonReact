@@ -4,14 +4,23 @@
 import * as React from 'react'
 
 function UsernameForm({onSubmitUsername}) {
+
+  const inputRef = React.useRef()
+  
   // 🐨 add a submit event handler here (`handleSubmit`).
   function handleSubmit (event){
 
     //calling the event.preventDefault() //refresh the page is default.
     event.preventDefault()
+
     //onSubmitUsername(event.target.elements.usernameInput.value)
     //variation.
-    onSubmitUsername(event.target.elements[0].value)
+    
+    //onSubmitUsername(event.target.elements[0].value) //working but turning off for extra credit.
+
+    //now implementing the extra credit variation to get the value by using a ref.
+    //const inputRef = React.inputRef()//current.value
+    onSubmitUsername(inputRef.current.value)
 
 
     //sticking with the argument value val for now. 3 
@@ -33,12 +42,12 @@ function UsernameForm({onSubmitUsername}) {
   // to do so, set the value of 'htmlFor' prop of the label to the id of input
 
   //the onSubmit is used in the form tag, and the curly brackets for the handleSubmit function.
-  
+
   return (
     <form onSubmit={handleSubmit}> 
       <div>
         <label>Username:</label>
-        <input type="text" />
+        <input id="usernameInput" type="text" ref={inputRef} />
       </div>
       <button type="submit">Submit</button>
     </form>
