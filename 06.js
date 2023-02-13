@@ -4,9 +4,11 @@
 import * as React from 'react'
 
 function UsernameForm({onSubmitUsername}) {
-  const [error, setError]= React.useState(null)
+  //changing to username and eliminating the error implementation.
+  //const [error, setError]= React.useState(null)
+  const [username, setUsername] = React.useState('') //using '' instead of null.
 
-  const inputRef = React.useRef()
+  //const inputRef = React.useRef()
   
   // 🐨 add a submit event handler here (`handleSubmit`).
   function handleSubmit (event){
@@ -21,8 +23,8 @@ function UsernameForm({onSubmitUsername}) {
 
     //now implementing the extra credit variation to get the value by using a ref.
     //const inputRef = React.inputRef()//current.value
-    onSubmitUsername(inputRef.current.value)
-
+    //onSubmitUsername(inputRef.current.value) //implementation of extra credit 2
+    onSubmitUsername(username)
 
     //sticking with the argument value val for now. 3 
 
@@ -42,11 +44,20 @@ function UsernameForm({onSubmitUsername}) {
   // 🐨 make sure to associate the label to the input.
   // to do so, set the value of 'htmlFor' prop of the label to the id of input
 
+  /*
 function handleChange(event){
   const {value} = event.target
   const isLowerCase = (value === value.toLowerCase()) //ask ed for the tripple use operator.
-  setError(isLowerCase ? null : 'Username must be lower case')
+  setError(isLowerCase ? null : 'Username must be lower case') // null gives an empty space in the html.
 }
+*/
+
+//extra credit 3 implementation with no error catching and controlled input.
+function handleChange(event){
+  //setUsername(inputRef.current.value.toLowerCase()) //this controls but not real time.
+  setUsername(event.target.value.toLowerCase())
+}
+
 
 
   //the onSubmit is used in the form tag, and the curly brackets for the handleSubmit function.
@@ -55,15 +66,16 @@ function handleChange(event){
     <form onSubmit={handleSubmit}> 
       <div>
         <label htmlFor="usernameInput">Username:</label>
-        <input id="usernameInput" type="text" ref={inputRef} onChange={handleChange} />
+        <input 
+          id="usernameInput" 
+          type="text" 
+          //ref={inputRef} 
+          onChange={handleChange}
+          value={username} //was missing this prop this enabled the controlled varaable to work in real time.
+        />
       </div>
 
-      
-      <div role="alert" style={{color:'red'}}>
-        {error}
-      </div>
-
-      <button disabled = {Boolean(error)} type="submit">Submit</button>
+      <button type="submit">Submit</button>
     </form>
   )
 }
